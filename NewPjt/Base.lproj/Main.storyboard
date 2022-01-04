@@ -102,6 +102,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="icons8-back-24"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="umn-K4-puW" eventType="touchUpInside" id="dEd-ZG-C4U"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2fM-me-XEY"/>

@@ -13,14 +13,17 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var myView: UIView!
     
     let topLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 22, y: 60, width: 300, height: 44))
+        let label = UILabel(frame: CGRect(x: 22, y: 60, width: 200, height: 44))
         return label
     }()
     
     let bottomLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 22, y: 90, width: 300, height: 44))
+        let label = UILabel(frame: CGRect(x: 22, y: 90, width: 200, height: 44))
         return label
     }()
+    
+    var statusBarFrame: CGRect!
+    var statusBarView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +32,21 @@ class SecondViewController: UIViewController {
     }
     
     private func setupUI() {
+        setupStatusBar()
         setupNavBar()
         setupLabel()
         setupBottomView()
+    }
+    
+    private func setupStatusBar() {
+        if #available(iOS 13.0, *) {
+            statusBarFrame = UIApplication.shared.windows[0].windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero
+        } else {
+            statusBarFrame = UIApplication.shared.statusBarFrame
+        }
+        
+         statusBarView = UIView(frame: statusBarFrame)
+         view.addSubview(statusBarView)
     }
     
     private func setupNavBar() {
@@ -41,7 +56,10 @@ class SecondViewController: UIViewController {
     }
     
     @objc func buttonTapped() {
-        self.navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
+    }
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setupLabel() {
@@ -74,16 +92,22 @@ class SecondViewController: UIViewController {
 
 extension SecondViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var offsetY = scrollView.contentOffset.y / 250
-        if offsetY > 1 {
-            offsetY = 1
+        var offset = scrollView.contentOffset.y / 180
+        
+        if offset <= 1 {
+            statusBarView.backgroundColor = .clear
+        } else {
+            offset = 1
+            statusBarView.backgroundColor = .white
         }
-//        let whiteColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: offsetY)
+        
+        let whiteColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: offset)
 //        let blackColor = UIColor (red: 1.0/255.0, green: 1.0/255.0, blue: 1.0/255.0, alpha: offsetY)
-        navigationController?.navigationBar.alpha = offsetY
+        navigationController?.navigationBar.alpha = offset
         navigationController?.navigationBar.tintColor = .black
-//        navigationController?.navigationBar.backgroundColor = whiteColor
+        navigationController?.navigationBar.backgroundColor = whiteColor
 //        navigationController?.navigationBar.titleTextAttributes =
 //            [NSAttributedString.Key.foregroundColor: blackColor]
+
     }
 }
