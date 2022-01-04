@@ -66,6 +66,7 @@ class SecondViewController: UIViewController {
     private func setupBottomView() {
         myView.layer.maskedCorners = [.layerMaxXMinYCorner]
         myView.layer.cornerRadius = 24
+        myView.backgroundColor = .red
     }
 
 
@@ -81,7 +82,6 @@ extension SecondViewController: UIScrollViewDelegate {
 //        let blackColor = UIColor (red: 1.0/255.0, green: 1.0/255.0, blue: 1.0/255.0, alpha: offsetY)
         navigationController?.navigationBar.alpha = offsetY
         navigationController?.navigationBar.tintColor = .black
-//        navigationController?.navigationItem.leftBarButtonItem?.tintColor = .black
 //        navigationController?.navigationBar.backgroundColor = whiteColor
 //        navigationController?.navigationBar.titleTextAttributes =
 //            [NSAttributedString.Key.foregroundColor: blackColor]
