@@ -77,12 +77,12 @@ extension SecondViewController: UIScrollViewDelegate {
         if offsetY > 1 {
             offsetY = 1
         }
-        let whiteColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: offsetY)
-        let blackColor = UIColor (red: 1.0/255.0, green: 1.0/255.0, blue: 1.0/255.0, alpha: offsetY)
+//        let whiteColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: offsetY)
+//        let blackColor = UIColor (red: 1.0/255.0, green: 1.0/255.0, blue: 1.0/255.0, alpha: offsetY)
         navigationController?.navigationBar.alpha = offsetY
         navigationController?.navigationBar.tintColor = .black
-//        navigationController?.navigationBar.
-        navigationController?.navigationBar.backgroundColor = whiteColor
+//        navigationController?.navigationItem.leftBarButtonItem?.tintColor = .black
+//        navigationController?.navigationBar.backgroundColor = whiteColor
 //        navigationController?.navigationBar.titleTextAttributes =
 //            [NSAttributedString.Key.foregroundColor: blackColor]
     }
